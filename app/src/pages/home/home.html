@@ -1,10 +1,43 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="home">
   <h2>Products</h2>
-  <button ion-button small clear (click)="logOut()">Logout</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-xs-12 col-sm-4 col-md-3 *ngFor="let product of products | async">
+        <ion-card>
+          <ion-card-header>
+            {{ product.name }}
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ product.description }}</p>
+            
+            <button ion-button color="primary" (click)="view(product)">
+              View
+            </button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-xs-12 col-sm-4 col-md-3>
+        <ion-card>
+          <ion-card-header>
+            <b>New Product</b>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Create a new product</p>
+            
+            <button ion-button color="primary" (click)="editEvent(event, false)">
+              New
+            </button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

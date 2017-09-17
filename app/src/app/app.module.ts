@@ -14,16 +14,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Auth } from '../providers/auth/auth';
 
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from './environment';
+import { ProductsServiceProvider } from '../providers/products-service/products-service';
 
 @NgModule({
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   declarations: [
     MyApp,
@@ -43,7 +46,8 @@ import { environment } from './environment';
   providers: [
     StatusBar,
     SplashScreen,
-    Auth
+    Auth,
+    ProductsServiceProvider
   ]
 })
 export class AppModule { }

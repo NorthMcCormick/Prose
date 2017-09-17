@@ -18,8 +18,7 @@ export class LoginPage {
   passwordChanged: boolean = false;
   submitAttempt: boolean = false;
 
-  constructor(public nav: NavController, public authData: Auth, public formBuilder: FormBuilder,
-    public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  constructor(public nav: NavController, public authData: Auth, public formBuilder: FormBuilder, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.nav = nav;
     this.authData = authData;
 
@@ -44,7 +43,9 @@ export class LoginPage {
 
       this.loadingController = this.loadingCtrl.create({
         dismissOnPageChange: true,
-      }).present();
+      });
+
+      this.loadingController.present();
 
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((authData: any) => {
         console.log(authData.uid);

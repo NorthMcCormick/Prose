@@ -1,6 +1,20 @@
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null"
+    ".write": "auth != null",
+    "userRoles": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "false"
+      }
+    },
+    "products": {
+      ".read": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)",
+      ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)",
+      "$productId": {
+        ".read": "auth != null",
+        ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)"
+      }
+    }
   }
 }
