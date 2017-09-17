@@ -14,4 +14,10 @@ This is where the server files for the database and api are located
 
 # Getting Started
 
-### Setup App
+### Set Up Firebase
+
+
+
+### Set Up Source
+
+Copy the `environment.template.ts` to `enviornment.ts` and update the configuration values to match your desired Firebase project.

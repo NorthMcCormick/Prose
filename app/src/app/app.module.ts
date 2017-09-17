@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -22,7 +21,6 @@ import { environment } from './environment';
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule

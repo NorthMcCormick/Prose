@@ -1,49 +1,57 @@
 <ion-navbar primary *navbar>
   <ion-header>
-      <ion-title>Firebase 3 Auth Starter</ion-title>
+    <ion-title>Login</ion-title>
   </ion-header>
 </ion-navbar>
 
 <ion-content padding class="login">
   <ion-item>
-  <div align="center"><span class="header">Firebase 3 Auth Starter</span><br/>
-  <ion-icon clear class="iconlogin" name="at"></ion-icon></div>
-</ion-item>
-  
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser($event)" novalidate>
+    <div align="center"><span class="header">Prose</span><br/>
+      <ion-icon clear class="iconlogin" name="at"></ion-icon>
+    </div>
+  </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input #email formControlName="email" type="email"
-        placeholder="Email"
-        [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && (emailChanged || submitAttempt)">
-      <p>Please enter a valid email.</p>
-    </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-xs-12 offset-sm-3 col-sm-6 offset-md-4 col-md-4>
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="loginUser($event)" novalidate>
+              <ion-item>
+                <ion-label stacked>Email</ion-label>
+                <ion-input #email formControlName="email" type="email" placeholder="Email" [class.invalid]="!loginForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+              </ion-item>
+    
+              <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && (emailChanged || submitAttempt)">
+                <p>Please enter a valid email.</p>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label stacked>Password</ion-label>
+                <ion-input #password formControlName="password" type="password" placeholder="Password" [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
+              </ion-item>
+    
+              <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && (passwordChanged || submitAttempt)">
+                <p>Your password needs more than 6 characters.</p>
+              </ion-item>
+          
+              <button ion-button block round type="submit">
+                Login
+              </button>
+            </form>
+          </ion-card-content>
+        </ion-card>
 
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input #password formControlName="password" type="password"
-        placeholder="Password"
-        [class.invalid]="!loginForm.controls.password.valid && (passwordChanged || submitAttempt)"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && (passwordChanged || submitAttempt)">
-      <p>Your password needs more than 6 characters.</p>
-    </ion-item>
-
-    <button ion-button block type="submit">
-      Login
-    </button>
-
-  </form>
-<div align="center">
-    <button ion-button small clear (click)="goToSignup()">
-      Register
-    </button>
-
-    <button ion-button small clear (click)="goToResetPassword()">
-      Forgot Password?
-    </button>
-</div>
+        <div text-center padding>
+          <button ion-button small clear (click)="goToSignup()">
+            Register
+          </button>
+      
+          <button ion-button small clear (click)="goToResetPassword()">
+            Forgot Password?
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
