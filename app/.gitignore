@@ -34,7 +34,4 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-env.json
-config.*.json
-
-!config.template.json
+src/app/environment.ts

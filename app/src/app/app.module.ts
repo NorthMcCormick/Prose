@@ -16,25 +16,15 @@ import { Auth } from '../providers/auth/auth';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { ConfigServiceProvider } from '../providers/config-service/config-service';
 
-// add your info here
-export const firebaseConfig = {
-  apiKey: "AIzaSyAbD19sI5Xz_jKjEMCQhjuYXVPrdn3YEsY",
-  authDomain: "codelab-22299.firebaseapp.com",
-  databaseURL: "https://codelab-22299.firebaseio.com",
-  projectId: "codelab-22299",
-  storageBucket: "codelab-22299.appspot.com",
-  messagingSenderId: "141181591031"
-};
-
+import { environment } from './environment';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
   declarations: [
@@ -55,14 +45,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    Auth,
-    ConfigServiceProvider,
-    {
-      provide: APP_INITIALIZER, 
-      useFactory: (config: ConfigServiceProvider) => () => config.load(), 
-      deps: [ConfigServiceProvider], 
-      multi: true
-    }
+    Auth
   ]
 })
 export class AppModule { }
