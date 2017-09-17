@@ -37,13 +37,14 @@ export class LoginPage {
   loginUser(event) {
     event.preventDefault();
     this.submitAttempt = true;
+
     if (!this.loginForm.valid) {
       console.log(this.loginForm.value);
     } else {
 
       this.loadingController = this.loadingCtrl.create({
         dismissOnPageChange: true,
-      });
+      }).present();
 
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((authData: any) => {
         console.log(authData.uid);
