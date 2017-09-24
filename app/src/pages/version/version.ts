@@ -6,6 +6,9 @@ import { FirebaseListObservable, FirebaseObjectObservable } from "angularfire2/d
 
 import { ProductsServiceProvider } from '../../providers/products-service/products-service';
 import { VersionsServiceProvider } from '../../providers/versions-service/versions-service';
+import { UploadServiceProvider } from '../../providers/upload-service/upload-service';
+
+import { FileItem } from '../../directives/ng-drop-files/file-item';
 
 /**
  * Generated class for the VersionPage page.
@@ -22,10 +25,29 @@ import { VersionsServiceProvider } from '../../providers/versions-service/versio
 export class VersionPage {
   public version: FirebaseObjectObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public versionsService: VersionsServiceProvider) {
+  public isDropZoneOver:boolean = false;
+  public isEnabledUpload: boolean = true;
+  public files: Array<FileItem[]> = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public versionsService: VersionsServiceProvider, public uploadService: UploadServiceProvider) {
     console.log(this.navParams.get('version'), this.navParams.get('product'));
     this.version = versionsService.getVersion(this.navParams.get('version'), this.navParams.get('product'));
   }
+  
+  public fileOverDropZone(e:any):void {
+    this.isDropZoneOver = e;
+  }
+
+  uploadToFirebase() {
+    console.log('click upload');
+    this.isEnabledUpload = false;
+    this.uploadService.uploadToFirebase(this.files);
+  }
+
+ clearFiles() {
+  this.files = [];
+  this.isEnabledUpload = true;
+ }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VersionPage');

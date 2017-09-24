@@ -22,6 +22,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './environment';
 import { ProductsServiceProvider } from '../providers/products-service/products-service';
 import { VersionsServiceProvider } from '../providers/versions-service/versions-service';
+import { UploadServiceProvider } from '../providers/upload-service/upload-service';
+
+import { NgDropFilesDirective } from '../directives/ng-drop-files/ng-drop-files';
 
 @NgModule({
   imports: [
@@ -38,7 +41,8 @@ import { VersionsServiceProvider } from '../providers/versions-service/versions-
     ForgotPage,
     RegisterPage,
     ProductPage,
-    VersionPage
+    VersionPage,
+    NgDropFilesDirective
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +59,8 @@ import { VersionsServiceProvider } from '../providers/versions-service/versions-
     SplashScreen,
     Auth,
     ProductsServiceProvider,
-    VersionsServiceProvider
+    VersionsServiceProvider,
+    UploadServiceProvider
   ]
 })
 export class AppModule { }
