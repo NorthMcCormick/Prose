@@ -74,7 +74,7 @@ export class NgDropFilesDirective {
   }
 
   private _fileCanBeAdded(file:File):boolean {
-    return (!this._fileIsAlreadyDropped(file) && this._fileTypeIsImage(file.type));
+    return (!this._fileIsAlreadyDropped(file) && this._fileTypeIsPO(file.name));
   }
 
   private _fileIsAlreadyDropped(file:File):boolean {
@@ -82,6 +82,15 @@ export class NgDropFilesDirective {
   }
 
   private _fileTypeIsImage(fileType:string):boolean {
+    console.log('FIle type:', fileType);
     return (fileType == ''? false: fileType.startsWith('image'));
+  }
+
+  private _fileTypeIsPO(name: string) {
+    if(name.indexOf('.po') > -1) {
+      return true;
+    }
+
+    return false;
   }
 }
