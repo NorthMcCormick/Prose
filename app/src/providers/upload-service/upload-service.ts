@@ -18,9 +18,6 @@ import * as _ from 'lodash';
 */
 @Injectable()
 export class UploadServiceProvider {
-  private IMAGES_FOLDER: string = 'images';
-
-  private basePath:string = '/uploads';
   private uploadTask: firebase.storage.UploadTask;
   public uploads: FirebaseListObservable<any[]>;
 
@@ -28,17 +25,17 @@ export class UploadServiceProvider {
     console.log('Hello UploadServiceProvider Provider');
   }
 
-  uploadToFirebase(files: Array<FileItem[]>) {
+  uploadToFirebase(directory: string, files: Array<FileItem[]>) {
     console.log('Starting upload');
     console.log(files);
-    
+
     let storageRef = firebase.storage().ref();
 
-    _.each(files, (item:FileItem) => {
+    _.each(files, (item: FileItem) => {
 
       item.isUploading = true;
       
-      storageRef.child(`${this.IMAGES_FOLDER}/${item.file.name}`).put(item.file).then(() => {
+      storageRef.child(`${directory}/${item.file.name}`).put(item.file).then(() => {
         console.log(`Uploaded ${item.file.name}`);
       });
       
@@ -56,8 +53,8 @@ export class UploadServiceProvider {
 
  }
 
- private saveImage(image:any) {
-   this.db.list(`/${this.IMAGES_FOLDER}`).push(image);
+ private saveImage(directory: string, image: any) {
+   this.db.list(`/${directory}/${image}`).push(image);
  }
 
 }

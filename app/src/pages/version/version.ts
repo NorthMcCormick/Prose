@@ -41,7 +41,7 @@ export class VersionPage {
   uploadToFirebase() {
     console.log('click upload');
     this.isEnabledUpload = false;
-    this.uploadService.uploadToFirebase(this.files);
+    this.uploadService.uploadToFirebase(`po/${this.navParams.get('product')}/${this.navParams.get('version')}`, this.files);
   }
 
  clearFiles() {
