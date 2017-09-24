@@ -32,4 +32,8 @@ export class ProductsServiceProvider {
       });
     });
   }
+
+  getProduct(key: string) {
+    return this.fireDatabase.object(`products/${key}`);
+  }
 }

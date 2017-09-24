@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Auth } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
+import { ProductPage } from '../product/product';
 
 import { FirebaseListObservable } from "angularfire2/database";
 
@@ -22,7 +23,9 @@ export class HomePage {
   }
 
   view(product: any) {
-    
+    this.nav.push(ProductPage, {
+      product: product
+    });
   }
 
   logOut(){

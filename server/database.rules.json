@@ -15,6 +15,18 @@
         ".read": "auth != null",
         ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)"
       }
+    },
+    "versions": {
+      ".read": "auth != null",
+      ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)",
+      "$productId": {
+        ".read": "auth != null",
+        ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)",
+        "$versionId": {
+          ".read": "auth != null",
+          ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('admin').val() === true)"
+        }
+      }
     }
   }
 }
